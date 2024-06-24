@@ -80,6 +80,11 @@ app.post('/user/create-playground' ,(req , res) => {
 socket_io.on('connection', (socket) => {
     console.log('a user connected');
 
+    socket.on("provide-preview-url" , (playground_id , callback) => {
+        const port = connectionObject_Id_TO_PORT[playground_id];
+        callback(`${domain}:${port - 1025 + 25025}`)
+    })
+
     //output can only come once the execute is complete
 
 
